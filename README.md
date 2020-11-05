@@ -43,6 +43,8 @@
 - Artifact is copied to S3 bucket and code deployement is triggered on running instances of autoscaling group
 - In-Place deployment configuration hooks are placed for routing the traffic during deployment
 
+![CodeDeployment](https://user-images.githubusercontent.com/44352879/98276401-e8081800-1f63-11eb-827b-cb59c353bf67.png)
+
 # Logging & Alerting - Cloud Watch Services
 
 - Embedded statD to collect various metrics such as counter for APIs hits and API response time etc

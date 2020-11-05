@@ -1,0 +1,56 @@
+{
+    "variables": {
+        "aws_access_key": "{{env `aws_access_key`}}",
+        "aws_secret_key":  "{{env `aws_secret_key`}}",
+        "aws_region": "{{env `aws_region`}}",
+        "source_ami": "{{env `source_ami`}}",
+        "ssh_username": "ubuntu",
+        "ami_users":"{{env `user_prod`}},{{env `user_dev`}}"
+    },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "access_key": "{{user `aws_access_key`}}",
+            "secret_key": "{{user `aws_secret_key`}}",
+            "region": "{{user `aws_region`}}",
+            "instance_type": "t2.micro",
+            "source_ami": "{{user `source_ami`}}",
+            "ssh_username": "{{user `ssh_username`}}",
+            "ami_name": "myami_{{timestamp}}",
+            "ami_description": "AMI Creation",
+            "ami_users":"{{user `ami_users`}}",
+            "launch_block_device_mappings": [
+                {
+                    "device_name": "/dev/sda1",
+                    "volume_size": 8,
+                    "volume_type": "gp2",
+                    "delete_on_termination": true
+                }
+            ]
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "environment_vars": [
+                "FOO=foo"
+            ],
+            "inline": [
+                "sleep 30",
+                "curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -",
+                "sudo apt-get install -y nodejs",
+                "sudo apt-get update",
+                "sudo apt-get -y install ruby",
+                "cd /home/ubuntu",
+                "wget https://aws-codedeploy-{{user `aws_region`}}.s3.{{user `aws_region`}}.amazonaws.com/latest/install",
+                "chmod +x ./install",
+                "sudo ./install auto",
+                "wget https://s3.{{user `aws_region`}}.amazonaws.com/amazoncloudwatch-agent-{{user `aws_region`}}/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb",
+                "sudo dpkg -i amazon-cloudwatch-agent.deb",
+                "echo 'CloudWatch Installed'"
+
+
+            ]
+        }
+    ]
+}

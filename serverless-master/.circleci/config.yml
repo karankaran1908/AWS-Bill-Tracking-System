@@ -1,0 +1,38 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.6-jessie
+    steps:
+      - checkout
+      - run:
+          command: |
+              sudo apt-get update && sudo apt-get install wget zip unzip
+              python3 -m venv venv
+              . venv/bin/activate
+          name: "Install packages"
+          
+      - run:
+          name: install awscli
+          command: sudo pip install awscli
+          
+      - 
+        run: 
+          command: |
+              pwd
+              aws configure set default.region ${aws_region}
+              aws configure set aws_access_key_id ${aws_access_key}
+              aws configure set aws_secret_access_key ${aws_secret_key}
+              zip -r lambdaFunction-${CIRCLE_BUILD_NUM}.zip lambdaFunction.js .
+              aws lambda update-function-code --region=us-east-1 --function-name=csye6225-spring2020-lambda  --zip-file fileb://lambdaFunction-${CIRCLE_BUILD_NUM}.zip
+          name: "Code Deploy API call "
+          
+workflows: 
+  version: 2
+  build-deploy-workflow:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master

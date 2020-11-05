@@ -12,12 +12,14 @@
 
 # Tools and Technologies
 
-- Web Application	                NodeJS, MySQL, Sequelize ORM, Express, Shell Scripts, AWS-SDK, ES6
-- Infrastructure	                VPC, ELB, ASG, RDS, Lambda, DynamoDB, Route53, Cloud formation
-- Metrics & Logging Service	      statsD, AWS Cloud-Watch, Log4js, Cloud-Watch Alarm
-- Queue & Notification Mechanism	SQS, SNS, Lambda, SES,
-- CI/CD Pipeline	                Circle CI, AWS Code Deploy, AMI Automation
-- Security	                      SSL/TLS , RDS Encryption
+| Category  | AWS Services & Technologie |
+| --- | --- |
+| Web Application | NodeJS, MySQL, Sequelize ORM, Express, Shell Scripts, AWS-SDK, ES6 |
+| Infrastructure | VPC, ELB, ASG, RDS, Lambda, DynamoDB, Route53, Cloud formation |
+| Metrics & Logging Service | statsD, AWS Cloud-Watch, Log4js, Cloud-Watch Alarm |
+| Queue & Notification Mechanism | SQS, SNS, Lambda, SES |
+| CI/CD Pipeline | Circle CI, AWS Code Deploy, AMI Automation |
+| Security | SSL/TLS , RDS Encryption |
 
 # Architecture Design
 

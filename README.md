@@ -21,6 +21,7 @@
 
 # Architecture Design
 
+![AWSArchitecture](https://user-images.githubusercontent.com/44352879/98276180-9bbcd800-1f63-11eb-84e6-2fdd572b8cf7.png)
 
 # Infrastructure - Cloud Formation
 

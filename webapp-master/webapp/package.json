@@ -27,7 +27,7 @@
     "sqlite3": "^4.1.1",
     "sqs-consumer": "^5.4.0",
     "statsd-client": "^0.4.4",
-    "uuidv4": "^6.0.2",
+    "uuidv4": "^6.2.7",
     "winston": "^3.2.1",
     "winston-cloudwatch": "^2.3.0"
   },
